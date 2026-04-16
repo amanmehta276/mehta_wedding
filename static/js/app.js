@@ -2,7 +2,7 @@
    SNEHA ❤️ AMAN — MAIN APP JS
    ═══════════════════════════════════════════════════════════════ */
 
-const API = '';
+const API = 'https://mehta-wedding.onrender.com';
 
 // ─── FLOATING PETALS ──────────────────────────────────────────
 (function initPetals() {
@@ -92,7 +92,7 @@ form.addEventListener('submit', async (e) => {
   formData.append('photo', file);
 
   try {
-    const res = await fetch("https://mehta-wedding.onrender.com/upload", { method: 'POST', body: formData });
+    const res = await fetch(`${API}/upload`, { method: 'POST', body: formData });
     const data = await res.json();
 
     if (data.success) {
@@ -169,7 +169,7 @@ async function loadGallery() {
   galleryEmpty.style.display = 'none';
 
   try {
-    const res = await fetch("https://mehta-wedding.onrender.com/gallery");
+    const res = await fetch(`${API}/gallery`);
     const data = await res.json();
     galleryPhotos = data.photos || [];
 

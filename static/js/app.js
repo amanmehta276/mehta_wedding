@@ -92,7 +92,7 @@ form.addEventListener('submit', async (e) => {
   formData.append('photo', file);
 
   try {
-    const res = await fetch(`${API}/api/upload`, { method: 'POST', body: formData });
+    const res = await fetch("https://mehta-wedding.onrender.com/upload", { method: 'POST', body: formData });
     const data = await res.json();
 
     if (data.success) {
@@ -169,7 +169,7 @@ async function loadGallery() {
   galleryEmpty.style.display = 'none';
 
   try {
-    const res = await fetch(`${API}/api/photos`);
+    const res = await fetch("https://mehta-wedding.onrender.com/gallery");
     const data = await res.json();
     galleryPhotos = data.photos || [];
 

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#8B0000" />
+  <title>Sneha ❤️ Aman — Wedding Moments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/css/main.css" />
+</head>
+<body>
+
+<!-- ░░ MANDALA BACKGROUND DECORATION ░░ -->
+<div class="bg-mandala top-left"></div>
+<div class="bg-mandala bottom-right"></div>
+<div class="floating-petals" id="petals"></div>
+
+<!-- ░░ HEADER ░░ -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="diya-row">
+    <span class="diya">🪔</span><span class="diya">🌺</span><span class="diya">🪔</span>
+  </div>
+  <p class="pre-title">Together in love</p>
+  <h1 class="couple-name">
+    <span class="name-sneha">Sneha</span>
+    <span class="heart-icon">❤️</span>
+    <span class="name-aman">Aman</span>
+  </h1>
+  <p class="subtitle">Wedding Moments</p>
+  <div class="ornament-line">
+    <span class="ornament-dot"></span>
+    <span class="ornament-line-seg"></span>
+    <span class="ornament-diamond">◆</span>
+    <span class="ornament-line-seg"></span>
+    <span class="ornament-dot"></span>
+  </div>
+  <p class="invite-text">📸 Capture & share your favourite moments with the couple</p>
+</header>
+
+<!-- ░░ UPLOAD SECTION ░░ -->
+<section class="upload-section" id="upload-section">
+  <div class="section-card upload-card">
+    <div class="card-header">
+      <span class="card-icon">🌹</span>
+      <h2 class="card-title">Share Your Blessings</h2>
+    </div>
+
+    <form id="upload-form" enctype="multipart/form-data">
+      <div class="field-group">
+        <label class="field-label" for="guest_name">Your Name</label>
+        <input
+          type="text"
+          id="guest_name"
+          name="guest_name"
+          class="field-input"
+          placeholder="e.g. Priya Sharma"
+          maxlength="50"
+          required
+        />
+      </div>
+
+      <div class="drop-zone" id="drop-zone">
+        <input type="file" id="photo-input" name="photo" accept="image/*" class="file-input" capture="environment" />
+        <div class="drop-zone-inner" id="drop-zone-inner">
+          <div class="drop-icon">🌸</div>
+          <p class="drop-primary">Drag & drop your photo here</p>
+          <p class="drop-secondary">or tap to choose from gallery</p>
+          <span class="drop-formats">JPG · PNG · WEBP · GIF</span>
+        </div>
+        <div class="drop-preview" id="drop-preview" style="display:none">
+          <img id="preview-img" src="" alt="Preview" />
+          <button type="button" class="remove-preview" id="remove-preview">✕</button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-upload" id="upload-btn">
+        <span class="btn-icon">✨</span>
+        <span class="btn-text">Share Moment</span>
+        <div class="btn-shimmer"></div>
+      </button>
+
+      <div class="upload-status" id="upload-status"></div>
+    </form>
+  </div>
+
+  <!-- Music Toggle -->
+  <div class="music-toggle-wrap">
+    <button class="music-btn" id="music-btn" title="Toggle background music">
+      🎵 <span id="music-label">Play Music</span>
+    </button>
+  </div>
+  <audio id="bg-music" loop>
+    <!-- Add your music file: /static/assets/wedding-music.mp3 -->
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg" />
+  </audio>
+</section>
+
+<!-- ░░ GALLERY SECTION ░░ -->
+<section class="gallery-section">
+  <div class="section-header">
+    <div class="diya-row small">
+      <span>🪔</span><span>🌺</span><span>🪔</span>
+    </div>
+    <h2 class="section-title">Live Gallery</h2>
+    <p class="section-subtitle">Moments captured by our beloved guests</p>
+    <div class="ornament-line small">
+      <span class="ornament-dot"></span>
+      <span class="ornament-line-seg"></span>
+      <span class="ornament-diamond">◆</span>
+      <span class="ornament-line-seg"></span>
+      <span class="ornament-dot"></span>
+    </div>
+  </div>
+
+  <div class="photo-count-bar">
+    <span id="photo-count">0 moments shared</span>
+    <button class="refresh-btn" id="refresh-btn" title="Refresh gallery">↻ Refresh</button>
+  </div>
+
+  <div class="gallery-grid" id="gallery-grid">
+    <div class="gallery-loader" id="gallery-loader">
+      <div class="loader-spinner"></div>
+      <p>Loading moments…</p>
+    </div>
+  </div>
+
+  <div class="gallery-empty" id="gallery-empty" style="display:none">
+    <div class="empty-icon">🌸</div>
+    <p>Be the first to share a moment!</p>
+  </div>
+</section>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="site-footer">
+  <p class="footer-names">Sneha ❤️ Aman</p>
+  <p class="footer-sub">Made with love · {{ "{}" }}</p>
+  <a href="/admin" class="admin-link">Admin</a>
+</footer>
+
+<!-- ░░ LIGHTBOX ░░ -->
+<div class="lightbox" id="lightbox" style="display:none">
+  <div class="lightbox-overlay" id="lb-overlay"></div>
+  <div class="lightbox-content">
+    <button class="lb-close" id="lb-close">✕</button>
+    <img class="lb-img" id="lb-img" src="" alt="" />
+    <div class="lb-caption">
+      <span class="lb-name" id="lb-name"></span>
+      <span class="lb-time" id="lb-time"></span>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ CONFETTI CANVAS ░░ -->
+<canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;"></canvas>
+
+<script src="../static/js/app.js"></script>
+</body>
+</html>
